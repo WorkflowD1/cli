@@ -7,6 +7,7 @@ import (
 	"workflow-cli/src/model"
 
 	"github.com/spf13/viper"
+	"gopkg.in/yaml.v2"
 )
 
 func LoadConfigs() model.Configuration {
@@ -28,9 +29,21 @@ func LoadConfigs() model.Configuration {
 func SetConfigs(baseUrl string, email string, password string) {
 	_, err := ioutil.ReadFile("./src/config/config.yml")
 	if err != nil {
-		blankYml := "user:\n    email: " + `""` + "\n    password: " + `""` + "\n\ninstance:\n    baseUrl: " + `""`
-		blankYmlBytes := []byte(blankYml)
-		err := ioutil.WriteFile("./src/config/config.yml", blankYmlBytes, 0644)
+		blankYml := model.Configuration{
+			User: model.UserConfig{
+				Email:    "",
+				Password: "",
+			},
+			Instance: model.InstanceConfig{
+				BaseUrl: "",
+			},
+		}
+		data, err := yaml.Marshal(blankYml)
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		err = ioutil.WriteFile("./src/config/config.yml", data, 0644)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -51,14 +64,17 @@ func SetConfigs(baseUrl string, email string, password string) {
 		config.User.Password = password
 	}
 
-	ymlContent := "user:\n    email: " + config.User.Email + "\n    password: " + config.User.Password + "\n\ninstance:\n    baseUrl: " + config.Instance.BaseUrl
-	ymlBytes := []byte(ymlContent)
+	ymlData, err := yaml.Marshal(config)
+	if err != nil {
+		log.Fatal(err)
+	}
 
-	err = ioutil.WriteFile("./src/config/config.yml", ymlBytes, 0644)
+	err = ioutil.WriteFile("./src/config/config.yml", ymlData, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	fmt.Println("Your actual configuration is:")
-	fmt.Println("URL: ", config.Instance.BaseUrl, "\nEmail: ", config.User.Email, "\nSenha: ", config.User.Password)
+	// fmt.Println("URL: ", config.Instance.BaseUrl, "\nEmail: ", config.User.Email, "\nSenha: ", config.User.Password)
+	fmt.Println(string(ymlData))
 }
