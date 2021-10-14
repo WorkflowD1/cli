@@ -1,0 +1,6 @@
+services:
+  goapp:
+    build: .
+    container_name: goapp
+    volumes:
+      - .:/go/src/
