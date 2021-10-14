@@ -5,7 +5,7 @@
 ## Work in progres...
 
 - [X] CLI command to configure instance url, email and password.
-- [ ] CLI command to create a product.
+- [X] CLI command to create a product.
 - [ ] CLI command to create a modality.
 - [ ] CLI command to create a document.
 - [ ] CLI command to create an attachment.
