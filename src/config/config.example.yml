@@ -1,6 +1,0 @@
-user:
-  email: "example@d1.cx"
-  password: "mystrongpass"
-
-instance:
-  baseUrl: "https://example.instance.workflows.d1.cx/"

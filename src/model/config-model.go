@@ -6,10 +6,10 @@ type Configuration struct {
 }
 
 type UserConfig struct {
-	Email    string
-	Password string
+	Email    string `yaml:"email"`
+	Password string `yaml:"password"`
 }
 
 type InstanceConfig struct {
-	BaseUrl string
+	BaseUrl string `yaml:"baseUrl"`
 }
