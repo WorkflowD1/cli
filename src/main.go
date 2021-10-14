@@ -1,14 +1,18 @@
 package main
 
 import (
+	"fmt"
 	"workflow-cli/src/client"
+	"workflow-cli/src/config"
 	"workflow-cli/src/model"
 )
 
 func main() {
+	config := config.LoadConfigs()
 	auth := model.AuthRequest{
-		Email:    "example.email@d1.cx",
-		Password: "mystrongpassword",
+		Email:    config.User.Email,
+		Password: config.User.Password,
 	}
-	client.Authenticate(auth)
+	token := client.Authenticate(config.Instance.BaseUrl, auth)
+	fmt.Println("Token: ", token)
 }

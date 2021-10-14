@@ -9,15 +9,20 @@ import (
 	"workflow-cli/src/model"
 )
 
-func Authenticate(auth model.AuthRequest) string {
+func Authenticate(baseUrl string, auth model.AuthRequest) string {
 	// Convert AuthRequest struct to JSON
 	data, err := json.Marshal(auth)
 	if err != nil {
 		log.Fatal(err)
 	}
 
+	// Prepare request variables
+	url := baseUrl + "cognito/user/signIn"
+	contentType := "application/json"
+	body := bytes.NewBuffer(data)
+
 	// HTTP POST Request to AWS Cognito
-	resp, err := http.Post("https://example.instance.workflows.d1.cx/cognito/user/signIn", "application/json", bytes.NewBuffer(data))
+	resp, err := http.Post(url, contentType, body)
 	if err != nil {
 		log.Fatal(err)
 	}
