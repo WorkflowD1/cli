@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"fmt"
+	"os"
 	"strings"
 	"workflow-cli/src/client"
 	"workflow-cli/src/config"
@@ -27,7 +28,11 @@ var createCmd = &cobra.Command{
 				product := views.CreateProductMenu()
 				res := client.CreateProduct(config.Instance.BaseUrl, model.AuthRequest(config.User), product)
 				fmt.Println("Produto criado:\nID: ", res.ID, "\nNome: ", res.Name, "\nDescrição: ", res.Description)
+				os.Exit(0)
 			}
+
+			fmt.Println("Entidade inválida.")
+			os.Exit(1)
 		}
 	},
 }

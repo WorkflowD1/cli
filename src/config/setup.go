@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"os"
 	"workflow-cli/src/model"
 
 	"github.com/spf13/viper"
@@ -11,11 +12,16 @@ import (
 )
 
 func LoadConfigs() model.Configuration {
+	homedir, err := os.UserHomeDir()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	viper.SetConfigName("config")
-	viper.AddConfigPath("./src/config")
+	viper.AddConfigPath(homedir + "/workflow")
 	viper.SetConfigType("yml")
 
-	err := viper.ReadInConfig()
+	err = viper.ReadInConfig()
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -27,8 +33,17 @@ func LoadConfigs() model.Configuration {
 }
 
 func SetConfigs(baseUrl string, email string, password string) {
-	_, err := ioutil.ReadFile("./src/config/config.yml")
+	homedir, err := os.UserHomeDir()
 	if err != nil {
+		log.Fatal(err)
+	}
+
+	configPath := homedir + "/workflow/config.yml"
+
+	_, err = ioutil.ReadFile(configPath)
+	if err != nil {
+		_ = os.Mkdir(homedir+"/workflow", 0777)
+
 		blankYml := model.Configuration{
 			User: model.UserConfig{
 				Email:    "",
@@ -43,7 +58,7 @@ func SetConfigs(baseUrl string, email string, password string) {
 			log.Fatal(err)
 		}
 
-		err = ioutil.WriteFile("./src/config/config.yml", data, 0644)
+		err = ioutil.WriteFile(configPath, data, 0777)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -69,7 +84,7 @@ func SetConfigs(baseUrl string, email string, password string) {
 		log.Fatal(err)
 	}
 
-	err = ioutil.WriteFile("./src/config/config.yml", ymlData, 0644)
+	err = ioutil.WriteFile(configPath, ymlData, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
