@@ -93,3 +93,13 @@ func SetConfigs(baseUrl string, email string, password string) {
 	// fmt.Println("URL: ", config.Instance.BaseUrl, "\nEmail: ", config.User.Email, "\nSenha: ", config.User.Password)
 	fmt.Println(string(ymlData))
 }
+
+func ShowConfigs() {
+	config := LoadConfigs()
+	yml, err := yaml.Marshal(config)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Println(string(yml))
+}
