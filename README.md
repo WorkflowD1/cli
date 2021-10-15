@@ -10,16 +10,21 @@
 - [ ] CLI command to create a document.
 - [ ] CLI command to create an attachment.
 
-## Build
+## Build & Install
 
 To build the program, you need to go to project root and type the following command:
 ```sh
-cd src && go build -o workflow && sudo chmod +x workflow && sudo mv workflow /usr/local/bin
+make build
+```
+
+After buil was done, you can run:
+```sh
+sudo make install
 ```
 
 ## Usage
 
-After built, you are ready to use CLI. Just type:
+After built and install, you are ready to use CLI. Just type:
 ```sh
 workflow <command> [flags]
 ```
@@ -34,5 +39,5 @@ docker-compose exec goapp sh
 
 You will open a shell terminal inside created Docker container. After that you are able to run CLI commands using
 ```sh
-go run src/main.go <command> [params]
+go run src/main.go <command> [flags]
 ```
