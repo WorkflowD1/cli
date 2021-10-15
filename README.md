@@ -2,7 +2,7 @@
 
 > This CLI was builted to help Workflow API users to make your work fast. Basically you will can create, update and delete Workflow entities like Products, Modalities, Documents and Attachments.
 
-## Work in progres...
+## Work in progress...
 
 - [X] CLI command to configure instance url, email and password.
 - [X] CLI command to create a product.
