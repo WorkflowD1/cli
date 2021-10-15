@@ -10,6 +10,20 @@
 - [ ] CLI command to create a document.
 - [ ] CLI command to create an attachment.
 
+## Build
+
+To build the program, you need to go to project root and type the following command:
+```sh
+cd src && go build -o workflow && sudo chmod +x workflow && sudo mv workflow /usr/local/bin
+```
+
+## Usage
+
+After built, you are ready to use CLI. Just type:
+```sh
+workflow <command> [flags]
+```
+
 ## How to run develop version
 
 To run this project in your machine, you need to have installed Docker and docker-compose. Clone this repository to your machine and type the following commands:
