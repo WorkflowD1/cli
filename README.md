@@ -12,15 +12,19 @@
 
 ## Build & Install
 
-To build the program, you need to go to project root and type the following command:
+To build the binary, you need to go to project root and type the following command:
 ```sh
 make build
 ```
 
-After buil was done, you can run:
+> Disclaimer: If you don't have Golang installed on your machine, you should build the project inside the docker container. Remember to return to project root on your machine for the following steps.
+
+After build was done, you can run:
 ```sh
 sudo make install
 ```
+
+> You can also run the installation inside the docker container, but you will only be able to use the CLI there.
 
 ## Usage
 
@@ -33,11 +37,16 @@ workflow <command> [flags]
 
 To run this project in your machine, you need to have installed Docker and docker-compose. Clone this repository to your machine and type the following commands:
 ```sh
-docker-compose up
-docker-compose exec goapp sh
+make up
 ```
 
-You will open a shell terminal inside created Docker container. After that you are able to run CLI commands using
+to turn docker image on and:
+
+```sh
+make sh
+```
+
+to open a shell terminal inside created Docker container. After that you are able to run CLI commands using:
 ```sh
 go run src/main.go <command> [flags]
 ```
