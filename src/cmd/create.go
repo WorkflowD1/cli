@@ -6,7 +6,6 @@ import (
 	"strings"
 	"workflow-cli/src/client"
 	"workflow-cli/src/config"
-	"workflow-cli/src/model"
 	"workflow-cli/src/views"
 
 	"github.com/spf13/cobra"
@@ -26,7 +25,7 @@ var createCmd = &cobra.Command{
 		if entity != "" {
 			if entity == "product" {
 				product := views.CreateProductMenu()
-				res := client.CreateProduct(config.Instance.BaseUrl, model.AuthRequest(config.User), product)
+				res := client.CreateProduct(config.Instance.BaseUrl, product)
 				fmt.Println("Produto criado:\nID: ", res.ID, "\nNome: ", res.Name, "\nDescrição: ", res.Description)
 				os.Exit(0)
 			}

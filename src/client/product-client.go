@@ -11,7 +11,7 @@ import (
 func LoadAllProducts(baseUrl string) []model.Product {
 	url := baseUrl + "product/loadAll"
 
-	resp, err := Post(url, struct{}{})
+	resp, err := Post(url, nil)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -32,7 +32,7 @@ func LoadAllProducts(baseUrl string) []model.Product {
 	return res
 }
 
-func CreateProduct(baseUrl string, auth model.AuthRequest, product model.Product) model.Product {
+func CreateProduct(baseUrl string, product model.Product) model.Product {
 	url := baseUrl + "product/create"
 
 	resp, err := Post(url, product)

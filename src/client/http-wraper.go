@@ -13,10 +13,9 @@ import (
 type Empty struct{}
 
 func Post(url string, body interface{}) (res *http.Response, err error) {
-	var empty Empty
 	var bodyBytes io.Reader
 
-	if body == empty {
+	if body == nil {
 		bodyBytes = bytes.NewBuffer([]byte(""))
 	} else {
 		bodyJson, err := json.Marshal(body)
