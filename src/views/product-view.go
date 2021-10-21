@@ -29,3 +29,9 @@ func CreateProductMenu() model.Product {
 
 	return product
 }
+
+func ShowProducts(products []model.Product) {
+	for _, product := range products {
+		fmt.Println("#", product.ID, " - ", product.Name)
+	}
+}

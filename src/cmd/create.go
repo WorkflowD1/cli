@@ -30,6 +30,13 @@ var createCmd = &cobra.Command{
 				os.Exit(0)
 			}
 
+			if entity == "document" {
+				document := views.CreateDocumentMenu()
+				res := client.CreateDocument(config.Instance.BaseUrl, document)
+				fmt.Println("Documento criado:\nID: ", res.ID, "\nProtocolo: ", res.Protocol)
+				os.Exit(0)
+			}
+
 			fmt.Println("Entidade inválida.")
 			os.Exit(1)
 		}

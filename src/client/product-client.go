@@ -2,7 +2,6 @@ package client
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"log"
 	"workflow-cli/src/model"
@@ -24,10 +23,6 @@ func LoadAllProducts(baseUrl string) []model.Product {
 
 	var res []model.Product
 	json.Unmarshal(bodyBytes, &res)
-
-	for _, product := range res {
-		fmt.Println("#", product.ID, " - ", product.Name)
-	}
 
 	return res
 }
