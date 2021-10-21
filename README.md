@@ -6,9 +6,10 @@
 
 - [X] CLI command to configure instance url, email and password.
 - [X] CLI command to create a product.
+- [X] CLI command to create a document.
 - [ ] CLI command to create a modality.
-- [ ] CLI command to create a document.
 - [ ] CLI command to create an attachment.
+- [ ] Write unit tests for all above.
 
 ## Build & Install
 
